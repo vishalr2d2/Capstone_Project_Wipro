@@ -1,0 +1,96 @@
+<mat-toolbar color="primary">
+    <mat-toolbar-row fxLayout="row">
+      <span> Claim Insurance</span>
+      <span class="spacer"></span>
+      <button class="mat-dialog-close" mat-icon-button mat-dialog-close>
+        <mat-icon>close</mat-icon>
+        </button>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  <mat-dialog-content class="mat-typography">
+    <form [formGroup]="productForm">
+      <div fxFlex fxLayout="column">
+        <div fxLayout="row wrap">
+          <mat-form-field appearance="outline" fxFlex>
+            <mat-label> Policy Number
+            </mat-label>
+            <input matInput formControlName="policyNumber" required readonly>
+            <mat-error *ngIf="productForm.controls.policyNumber.touched && productForm.controls.policyNumber.invalid">
+              <span *ngIf="productForm.controls.policyNumber.errors.required">This field is mandatory.</span>
+              <span *ngIf="productForm.controls.policyNumber.errors.pattern">This field is invalid.</span>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div fxLayout="row wrap">
+            <mat-form-field appearance="outline" fxFlex>
+                <mat-label> insuranceCompany
+                </mat-label>
+                <input matInput formControlName="insuranceCompany" required readonly>
+                <mat-error *ngIf="productForm.controls.insuranceCompany.touched && productForm.controls.insuranceCompany.invalid">
+                  <span *ngIf="productForm.controls.insuranceCompany.errors.required">This field is mandatory.</span>
+                  <span *ngIf="productForm.controls.insuranceCompany.errors.pattern">This field is invalid.</span>
+                </mat-error>
+              </mat-form-field>
+        </div>
+        <div fxLayout="row wrap">
+            <mat-form-field appearance="outline" fxFlex>
+                <mat-label> Insured Name
+                </mat-label>
+                <input matInput formControlName="insuredName" required readonly>
+                <mat-error *ngIf="productForm.controls.insuredName.touched && productForm.controls.insuredName.invalid">
+                  <span *ngIf="productForm.controls.insuredName.errors.required">This field is mandatory.</span>
+                  <span *ngIf="productForm.controls.insuredName.errors.pattern">This field is invalid.</span>
+                </mat-error>
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" fxFlex>
+                <mat-label> Sum Insured
+                </mat-label>
+                <input matInput formControlName="sumInsured" required readonly>
+                <mat-error *ngIf="productForm.controls.sumInsured.touched && productForm.controls.sumInsured.invalid">
+                  <span *ngIf="productForm.controls.sumInsured.errors.required">This field is mandatory.</span>
+                  <span *ngIf="productForm.controls.sumInsured.errors.pattern">This field is invalid.</span>
+                </mat-error>
+              </mat-form-field>
+        </div>
+
+        <div fxLayout="row wrap">
+            <mat-form-field appearance="outline" fxFlex>
+                <mat-label> Cause Of Loss
+                </mat-label>
+                <input matInput formControlName="causeOfLoss" required>
+                <mat-error *ngIf="productForm.controls.causeOfLoss.touched && productForm.controls.causeOfLoss.invalid">
+                  <span *ngIf="productForm.controls.causeOfLoss.errors.required">This field is mandatory.</span>
+                  <span *ngIf="productForm.controls.causeOfLoss.errors.pattern">This field is invalid.</span>
+                </mat-error>
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" fxFlex>
+                <mat-label> Date Of Loss
+                </mat-label>
+                <input matInput formControlName="dateOfLoss" required>
+                <mat-error *ngIf="productForm.controls.dateOfLoss.touched && productForm.controls.dateOfLoss.invalid">
+                  <span *ngIf="productForm.controls.dateOfLoss.errors.required">This field is mandatory.</span>
+                  <span *ngIf="productForm.controls.dateOfLoss.errors.pattern">This field is invalid.</span>
+                </mat-error>
+              </mat-form-field>
+        </div>
+
+        <div fxLayout="row wrap">
+            <mat-form-field appearance="outline" fxFlex>
+                <mat-label>Supporting Document</mat-label>
+                <textarea matInput formControlName="supportingDocument" required></textarea>
+                <mat-error *ngIf="productForm.controls.supportingDocument.touched && productForm.controls.supportingDocument.invalid">
+                    <span *ngIf="productForm.controls.supportingDocument.errors.required">This field is mandatory.</span>
+                    <span *ngIf="productForm.controls.supportingDocument.errors.pattern">This field is invalid.</span>
+                </mat-error>
+            </mat-form-field>
+        </div>
+      </div>
+    </form>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-raised-button color="primary" type="submit" (click)="handleSubmit()"
+      [disabled]="!(productForm.valid && productForm.dirty)"><mat-icon>save</mat-icon> Add</button>
+    <button mat-raised-button color="warn" mat-dialog-close><mat-icon>cancel</mat-icon> Close</button>
+  </mat-dialog-actions>

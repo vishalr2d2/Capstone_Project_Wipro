@@ -1,0 +1,86 @@
+<mat-toolbar color="primary">
+    <mat-toolbar-row fxLayout="row">
+      <span>New Insurance</span>
+      <span class="spacer"></span>
+      <button class="mat-dialog-close" mat-icon-button mat-dialog-close>
+        <mat-icon>close</mat-icon>
+        </button>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  <mat-dialog-content class="mat-typography">
+    <form [formGroup]="categoryForm">
+      <div fxFlex fxLayout="column">
+        <div fxLayout="row wrap">
+
+            <mat-form-field appearance="outline" fxFlex>
+                <mat-label>Season</mat-label>
+                <mat-select formControlName="season">
+                    <mat-option value="kharif">Kharif</mat-option>
+                    <mat-option value="rabi">Rabi</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" fxFlex>
+                <mat-label>Year</mat-label>
+                <mat-select formControlName="year">
+                    <mat-option value="2022">2022</mat-option>
+                    <mat-option value="2021">2021</mat-option>
+                    <mat-option value="2020">2020</mat-option>
+                    <mat-option value="2019">2019</mat-option>
+                    <mat-option value="2018">2018</mat-option>
+                </mat-select>
+            </mat-form-field>
+            </div>
+            <div fxLayout="row wrap">
+            <mat-form-field appearance="outline" fxFlex>
+                <mat-label>Crop</mat-label>
+                <mat-select formControlName="cropName">
+                  <mat-option *ngFor="let food of crops" [value]="food">
+                    {{food}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+
+          <mat-form-field appearance="outline" fxFlex>
+            <mat-label> Area
+            </mat-label>
+            <input matInput formControlName="area" required>
+            <mat-error *ngIf="categoryForm.controls.area.touched && categoryForm.controls.area.invalid">
+              <span *ngIf="categoryForm.controls.area.errors.required">This field is mandatory.</span>
+              <span *ngIf="categoryForm.controls.area.errors.pattern">This field is invalid.</span>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+    </form>
+    <button mat-raised-button color="primary" type="submit" (click)="handleCalculateSubmit()"
+    [disabled]="!(categoryForm.valid && categoryForm.dirty)"><mat-icon>calculate</mat-icon> Calculate</button>
+    <br>
+    <br>
+    <table id="customers">
+        <tr>
+          <th>Insurance Company</th>
+          <th>Sum Insured (per Hectare)</th>
+          <th>Share Premium</th>
+          <th>Premium Amount</th>
+          <th>Crop Name</th>
+          <th>Area</th>
+          <th>Sum Insured</th>
+        </tr>
+        <tr *ngIf="calculatedData != undefined">
+          <td>{{calculatedData?.insuranceCompany}}</td>
+          <td>{{calculatedData?.sumInsuredPerHectare}}</td>
+          <td>{{calculatedData?.sharePremium}}</td>
+          <td>{{calculatedData?.premiumAmount}}</td>
+          <td>{{calculatedData?.cropName}}</td>
+          <td>{{calculatedData?.area}}</td>
+          <td>{{calculatedData?.sumInsured}}</td>
+        </tr>
+      </table>
+      
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-raised-button color="primary" type="submit" (click)="handleApplyAction()"
+      [disabled]="!(categoryForm.valid && categoryForm.dirty)"><mat-icon>save</mat-icon> Apply</button>
+    <button mat-raised-button color="warn" mat-dialog-close><mat-icon>cancel</mat-icon> Close</button>
+  </mat-dialog-actions>

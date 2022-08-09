@@ -1,0 +1,74 @@
+<mat-toolbar color="primary">
+    <mat-toolbar-row fxLayout="row">
+      <span> Add Request</span>
+      <span class="spacer"></span>
+      <button class="mat-dialog-close" mat-icon-button mat-dialog-close>
+        <mat-icon>close</mat-icon>
+        </button>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  <mat-dialog-content class="mat-typography">
+    <form [formGroup]="productForm">
+      <div fxFlex fxLayout="column">
+        <div fxLayout="row wrap">
+          <mat-form-field appearance="outline" fxFlex>
+            <mat-label> Crop Type
+            </mat-label>
+            <input matInput formControlName="cropType" required>
+            <mat-error *ngIf="productForm.controls.cropType.touched && productForm.controls.cropType.invalid">
+              <span *ngIf="productForm.controls.cropType.errors.required">This field is mandatory.</span>
+              <span *ngIf="productForm.controls.cropType.errors.pattern">This field is invalid.</span>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div fxLayout="row wrap">
+            <mat-form-field appearance="outline" fxFlex>
+                <mat-label> Crop Name
+                </mat-label>
+                <input matInput formControlName="cropName" required>
+                <mat-error *ngIf="productForm.controls.cropName.touched && productForm.controls.cropName.invalid">
+                  <span *ngIf="productForm.controls.cropName.errors.required">This field is mandatory.</span>
+                  <span *ngIf="productForm.controls.cropName.errors.pattern">This field is invalid.</span>
+                </mat-error>
+              </mat-form-field>
+        </div>
+        <div fxLayout="row wrap">
+            <mat-form-field appearance="outline" fxFlex>
+                <mat-label> Fertilizer Type
+                </mat-label>
+                <input matInput formControlName="fertilizerType" required>
+                <mat-error *ngIf="productForm.controls.fertilizerType.touched && productForm.controls.fertilizerType.invalid">
+                  <span *ngIf="productForm.controls.fertilizerType.errors.required">This field is mandatory.</span>
+                  <span *ngIf="productForm.controls.fertilizerType.errors.pattern">This field is invalid.</span>
+                </mat-error>
+              </mat-form-field>
+              <mat-form-field appearance="outline" fxFlex>
+                <mat-label> Quantity
+                </mat-label>
+                <input matInput formControlName="quantity" required>
+                <mat-error *ngIf="productForm.controls.quantity.touched && productForm.controls.quantity.invalid">
+                  <span *ngIf="productForm.controls.quantity.errors.required">This field is mandatory.</span>
+                  <span *ngIf="productForm.controls.quantity.errors.pattern">This field is invalid.</span>
+                </mat-error>
+              </mat-form-field>
+        </div>
+
+        <div fxLayout="row wrap">
+            <mat-form-field appearance="outline" fxFlex>
+                <mat-label> Soil pH Certificate
+                </mat-label>
+                <input matInput formControlName="soilPhCertificate" required>
+                <mat-error *ngIf="productForm.controls.soilPhCertificate.touched && productForm.controls.soilPhCertificate.invalid">
+                  <span *ngIf="productForm.controls.soilPhCertificate.errors.required">This field is mandatory.</span>
+                  <span *ngIf="productForm.controls.soilPhCertificate.errors.pattern">This field is invalid.</span>
+                </mat-error>
+              </mat-form-field> 
+        </div>
+      </div>
+    </form>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-raised-button color="primary" type="submit" (click)="handleSubmit()"
+      [disabled]="!(productForm.valid && productForm.dirty)"><mat-icon>save</mat-icon> Add</button>
+    <button mat-raised-button color="warn" mat-dialog-close><mat-icon>cancel</mat-icon> Close</button>
+  </mat-dialog-actions>

@@ -1,0 +1,171 @@
+URL:- localhost:8082/farmer/register
+TYPE:- Post
+Json:- 
+{
+  "fullName": "Sam",
+  "contactNo": "1234567899",
+  "emailId": "abc@gmail.com",
+  "addressOne": "Jp nagar",
+  "addressTwo": "indore,india",
+  "city": "Indore",
+  "state": "Mp",
+  "pinCode": "808373",
+  "landArea": "Circle",
+  "landAddress": "xyz block",
+  "landPinCode": "462093",
+  "accountNo": "23453234564345",
+  "ifscCode": "SBI-8767890",
+  "aadhaar": "7789-8898-7789",
+  "pan": "XYZ-6789-8765",
+  "certificate": "CER-9876545",
+  "password": "saur"
+}
+
+=====================================================
+URL:- localhost:8082/farmer/getAllFarmer
+TYPE:- Get
+
+=====================================================
+URL:- localhost:8082/bidder/register
+Type:- POST
+Json:- 
+{
+  "fullName": "Sam",
+  "contactNo": "1234567899",
+  "emailId": "abc@gmail.com",
+  "addressOne": "Jp nagar",
+  "addressTwo": "indore,india",
+  "city": "Indore",
+  "state": "Mp",
+  "pinCode": "808373",
+  "accountNo": "23453234564345",
+  "ifscCode": "SBI-8767890",
+  "aadhaar": "7789-8898-7789",
+  "pan": "XYZ-6789-8765",
+  "traderLicense": "TRD-9876545",
+  "password": "saur"
+}
+
+=====================================================
+URL:- localhost:8082/bidder/getAllBidder
+Type:- GET
+
+=====================================================
+URL:- localhost:8082/sell/sellRequest
+TYPE:- Post
+Json:- 
+{
+  "farmerId": "FR-87654345",
+  "cropType": "Seasonal",
+  "cropName": "Weat",
+  "fertilizerType": "FRT-87679",
+  "quantity": "57",
+  "soilPhCertificate": "PH-76567890"
+}
+
+URL:- localhost:8082/sell/getSellRequestByFarmer/FR-87654345
+TYPE:- GET
+
+=====================================================
+URL:- localhost:8082/farmer/login
+TYPE:- Post
+Json:- {"password":"saur","emailId": "abc@gmail.com","role":"farmer"}
+
+role :-  farmer or bidder
+
+=====================================================
+URL:- localhost:8082/sell/getAllSellRequest
+TYPE:- Get
+
+
+
+=====================================================
+URL:- localhost:8082/purchase/purchaseRequest
+Type:- POST
+Json:-
+{
+  "farmerId": "FR-87654345",
+  "cropType": "Seasonal",
+  "cropName": "Weat",
+  "fertilizerType": "FRT-87679",
+  "quantity": "57",
+  "soilPhCertificate": "PH-76567890",
+  "bidderId": "BI-1114492042212399",
+  "amount": "5009",
+  "sellRequestId": "SR-1031614090156200"
+}
+
+=====================================================
+Url:- localhost:8082/purchase/approvePurchaseRequest/SR-1031614090156200/BI-11144920422123990000
+Type:- GET
+
+
+=====================================================
+URL:-
+(Apis for bidder)
+localhost:8082/purchase/getSellRequestByIdAndStatus/BI-11144920422123990000/Approved
+localhost:8082/purchase/getSellRequestByIdAndStatus/BI-11144920422123990000/Rejected
+
+(Apis for farmer)
+localhost:8082/purchase/getSellRequestByIdAndStatus/FR-87654345/Approved
+localhost:8082/purchase/getSellRequestByIdAndStatus/FR-87654345/Rejected
+
+Type:- Get
+
+=====================================================
+Url:-localhost:8082/purchase/getMaxBid/SR-1031614090156200
+Type:- Get
+
+
+=====================================================
+Url:-localhost:8082/sell/getSoldCropDetails/FR-1031588414526600
+Type:- Get
+
+=====================================================
+Url:-localhost:8082/purchase/getAllPurchaseRequestByRequestId/SR-1031614090156200
+Type:- Get
+
+=====================================================
+Url:- localhost:8082/crop/addCrop
+Type:- Post
+Json:- {"cropName":"Wheat","farmerShare":"2","sumInsured":"45000"}
+
+=====================================================
+Url:- localhost:8082/crop/getAllCrop
+Type:- Get
+
+=====================================================
+localhost:8082/insurance/calculate
+Type:- Post
+
+//{"cropName":"Wheat","farmerShare":"2","sumInsured":"45000","area":"20"}
+{"cropName":"Wheat","area":"20"}
+=====================================================
+Url:- localhost:8082/insurance/applyForInsurance
+Type:- Post
+Json:- 
+{
+    "premiumAmount": "18000.0",
+    "area": "20",
+    "sumInsured": "900000.0",
+    "sumInsuredPerHectare": "45000.0",
+    "cropName": "Wheat",
+    "insuranceCompany": "AGRICULTURE INSURANCE COMPANY",
+    "sharePremium": "2.0 %",
+    "fullName": "Sam",
+    "farmerId": "FR-87654567"
+}
+=====================================================
+Url:- localhost:8082/insurance/getInsuranceById/PID-1222737966743100
+Type:- Get
+
+=====================================================
+localhost:8082/insurance/claimInsurance
+Type:- Post
+Json:-
+{
+    "id": "PID-1222737966743100",
+    "causeOfLoss": "Due to heavy rain",
+    "dateOfLoss": "12-07-2022",
+    "supportingDocument": "Just for test"
+}

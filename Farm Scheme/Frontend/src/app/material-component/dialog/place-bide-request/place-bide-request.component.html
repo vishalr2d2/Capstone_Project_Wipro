@@ -1,0 +1,45 @@
+<mat-toolbar color="primary">
+    <mat-toolbar-row fxLayout="row">
+        <span> Submit Your Bid</span>
+        <span class="spacer"></span>
+        <button class="mat-dialog-close" mat-icon-button mat-dialog-close>
+            <mat-icon>close</mat-icon>
+        </button>
+    </mat-toolbar-row>
+</mat-toolbar>
+<mat-dialog-content class="mat-typography">
+    <table id="customers">
+        <tr>
+            <td><b>Crop Type:</b> 1</td>
+            <td><b>Crop Name:</b> test</td>
+        </tr>
+        <tr>
+            <td><b>Fertilizer Type:</b> contactNumber</td>
+            <td><b>Quantity:</b> paymentMethod</td>
+        </tr>
+        <tr>
+            <td><b>Soil pH Certificate:</b> contactNumber</td>
+        </tr>
+    </table>
+    <br>
+    <form [formGroup]="categoryForm">
+      <div fxFlex fxLayout="column">
+        <div fxLayout="row wrap">
+          <mat-form-field appearance="outline" fxFlex>
+            <mat-label> Bide Amount
+            </mat-label>
+            <input matInput formControlName="amount" required>
+            <mat-error *ngIf="categoryForm.controls.amount.touched && categoryForm.controls.amount.invalid">
+              <span *ngIf="categoryForm.controls.amount.errors.required">This field is mandatory.</span>
+              <span *ngIf="categoryForm.controls.amount.errors.pattern">This field is invalid.</span>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+    </form>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-raised-button color="primary" type="submit" (click)="handleSubmit()"
+      [disabled]="!(categoryForm.valid && categoryForm.dirty)"><mat-icon>save</mat-icon> Confirm</button>
+    <button mat-raised-button color="warn" mat-dialog-close><mat-icon>cancel</mat-icon> Close</button>
+  </mat-dialog-actions>
